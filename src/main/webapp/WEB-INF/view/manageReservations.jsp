@@ -62,6 +62,7 @@
 					  </tbody>
 					</table>
 					<!-- end of table -->
+					<a class="btn btn-light btn-sm" href="/welcome">Back</a>
 				</div>
 				</c:when>
 				
@@ -105,12 +106,12 @@
 							      <button type="submit" class="btn btn-info btn-lg">Save</button>
 							    </div>
 							  </div>
+							  <a class="btn btn-light btn-sm" href="/reservations">Back</a>
 						</form>
 						<!-- end of form -->
 					</div>
 				</c:when>
 			</c:choose>
 		</div>
-		<a class="btn btn-light btn-sm" href="/welcome">Back</a>
 	</body>
 </html>

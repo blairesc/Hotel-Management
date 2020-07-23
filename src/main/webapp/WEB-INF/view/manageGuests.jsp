@@ -30,7 +30,7 @@
 			</h1>
 			<br><small class="text-muted">Manage Guests</small>
 		</div>
-		<jsp:include page="nav.jsp"></jsp:include>
+		<jsp:include page="navGuest.jsp"></jsp:include>
 				<div class="section">
 					<c:choose>
 						<c:when test="${mode == 'MODE_GUESTS'}">
@@ -61,6 +61,7 @@
 								  </tbody>
 								</table>
 								<!-- end of table -->
+								<a class="btn btn-light btn-sm" href="/welcome">Back</a>
 							</div>
 						</c:when>
 						
@@ -95,11 +96,11 @@
 									      <button type="submit" class="btn btn-info btn-lg">Save</button>
 									    </div>
 									  </div>
+									  <a class="btn btn-light btn-sm" href="/guests">Back</a>
 								</form>
 							</div>
 						</c:when>
 					</c:choose>
 			</div>
-			<a class="btn btn-light btn-sm" href="/welcome">Back</a>
 	</body>
 </html>
