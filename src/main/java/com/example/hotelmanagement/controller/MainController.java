@@ -1,16 +1,20 @@
 package com.example.hotelmanagement.controller;
 
 
+import java.io.IOException;
 import java.util.Optional;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,14 +39,24 @@ public class MainController {
 	private ReservationService reservationService;
 	
 	@RequestMapping("/")
-	public String displayLogin() {
+	public String displayLogin(HttpServletRequest request) {
 		
+		request.getSession().invalidate();
 		return "login";
 	}
 	
-	@RequestMapping ("/login-user")
-	public String loginUser(@ModelAttribute User user, HttpServletRequest request) {
+	@RequestMapping("/welcome")
+	public String displayWelcome() {
+		
+		return "welcome";
+	}
+	
+	@PostMapping ("/login-user")
+	public String loginUser(@ModelAttribute User user, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(userService.findByUsernameAndPassword(user.getUserName(), user.getPassword())!=null) {
+			HttpSession session = request.getSession();
+			session.setAttribute("user",user);
+			//response.sendRedirect("welcome");
 			return "welcome";
 		}
 		else {
